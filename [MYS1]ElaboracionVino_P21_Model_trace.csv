@@ -1,0 +1,4 @@
+Time(Hours);EntityID;ObjectName;ProcessID;StepName;Action
+0.00177083333333333;Uvas.72;SalidaUvas;0.OnEnteredOutputBuffer;[Assign] BeforeExitingAssignments;Unable to get value of property 'SalidaUvas.AssignmentsBeforeExiting.AssignmentsBeforeExitingNewValue'.
+0.00177083333333333;Uvas.72;SalidaUvas;0.OnEnteredOutputBuffer;[Assign] BeforeExitingAssignments;Referenced definition type 'Orden' does not match executing type 'Uvas_Mosto_Vino'
+
