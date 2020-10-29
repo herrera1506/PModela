@@ -1,4 +1,4 @@
 Time(Hours);EntityID;ObjectName;ProcessID;StepName;Action
-0.267538888888888;Orden1.102;Model;32.Embotellado;[Assign] Assign10;Unable to get value of property 'Assign.NewValue'.
-0.267538888888888;Orden1.102;Model;32.Embotellado;[Assign] Assign10;Referenced definition type 'Botella' does not match executing type 'Orden'
+0.000872222222222222;Orden1.102;Model;11.ProcesoSacado;[Decide] Decide6;Unable to get value of property 'Decide.ConditionOrProbability'.
+0.000872222222222222;Orden1.102;Model;11.ProcesoSacado;[Decide] Decide6;Referenced definition type 'Uvas_Mosto_Vino' does not match executing type 'Orden'
 
