@@ -1,4 +1,4 @@
 Time(Hours);EntityID;ObjectName;ProcessID;StepName;Action
-0.000872222222222222;Orden1.102;Model;11.ProcesoSacado;[Decide] Decide6;Unable to get value of property 'Decide.ConditionOrProbability'.
-0.000872222222222222;Orden1.102;Model;11.ProcesoSacado;[Decide] Decide6;Referenced definition type 'Uvas_Mosto_Vino' does not match executing type 'Orden'
+33.9081579692505;Botella1.105;Model;10694.EscribirArchivoBotellas;[ExcelWrite] ExcelWrite1;Unable to get value of property 'ExcelWrite.Items.Expression'.
+33.9081579692505;Botella1.105;Model;10694.EscribirArchivoBotellas;[ExcelWrite] ExcelWrite1;Referenced definition type 'Uvas_Mosto_Vino' does not match executing type 'Botella'
 
