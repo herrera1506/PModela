@@ -1,0 +1,4 @@
+Time(Hours);EntityID;ObjectName;ProcessID;StepName;Action
+0.00138888888888889;ModelEntity1.98;Model;2.LecturaArchivo;[Decide] Decide6;Possible infinite loop detected in process logic
+0.00138888888888889;ModelEntity1.98;Model;2.LecturaArchivo;[Decide] Decide6;The process 'LecturaArchivo' has logic that has looped 200000 times without any delay or pause. This may indicate a modeling error. 
+
