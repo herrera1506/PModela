@@ -1,0 +1,8 @@
+Time(Hours),EntityID,ObjectName,ProcessID,StepName,Action
+0,--,--,--,--,Unable to evaluate status expression for graphic.
+0,--,--,--,--,Referenced definition type 'BotellaEntity' does not match executing type 'Model'
+0.000416666666666667,--,--,--,--,Unable to evaluate status expression for graphic.
+0.000416666666666667,--,--,--,--,Referenced definition type 'BotellaEntity' does not match executing type 'Model'
+0.000833333333333333,--,--,--,--,Unable to evaluate status expression for graphic.
+0.000833333333333333,--,--,--,--,Referenced definition type 'BotellaEntity' does not match executing type 'Model'
+
