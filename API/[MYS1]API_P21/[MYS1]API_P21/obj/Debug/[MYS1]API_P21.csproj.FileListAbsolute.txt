@@ -1,0 +1,11 @@
+C:\Users\herre\Desktop\Proyecto Modela\PModela\API\[MYS1]API_P21\[MYS1]API_P21\bin\Debug\[MYS1]API_P21.exe.config
+C:\Users\herre\Desktop\Proyecto Modela\PModela\API\[MYS1]API_P21\[MYS1]API_P21\bin\Debug\[MYS1]API_P21.exe
+C:\Users\herre\Desktop\Proyecto Modela\PModela\API\[MYS1]API_P21\[MYS1]API_P21\bin\Debug\[MYS1]API_P21.pdb
+C:\Users\herre\Desktop\Proyecto Modela\PModela\API\[MYS1]API_P21\[MYS1]API_P21\obj\Debug\[MYS1]API_P21.csprojAssemblyReference.cache
+C:\Users\herre\Desktop\Proyecto Modela\PModela\API\[MYS1]API_P21\[MYS1]API_P21\obj\Debug\_MYS1_API_P21.Form1.resources
+C:\Users\herre\Desktop\Proyecto Modela\PModela\API\[MYS1]API_P21\[MYS1]API_P21\obj\Debug\_MYS1_API_P21.Properties.Resources.resources
+C:\Users\herre\Desktop\Proyecto Modela\PModela\API\[MYS1]API_P21\[MYS1]API_P21\obj\Debug\[MYS1]API_P21.csproj.GenerateResource.cache
+C:\Users\herre\Desktop\Proyecto Modela\PModela\API\[MYS1]API_P21\[MYS1]API_P21\obj\Debug\[MYS1]API_P21.csproj.CoreCompileInputs.cache
+C:\Users\herre\Desktop\Proyecto Modela\PModela\API\[MYS1]API_P21\[MYS1]API_P21\obj\Debug\[MYS1]API_P21.csproj.CopyComplete
+C:\Users\herre\Desktop\Proyecto Modela\PModela\API\[MYS1]API_P21\[MYS1]API_P21\obj\Debug\[MYS1]API_P21.exe
+C:\Users\herre\Desktop\Proyecto Modela\PModela\API\[MYS1]API_P21\[MYS1]API_P21\obj\Debug\[MYS1]API_P21.pdb
