@@ -1,4 +1,4 @@
 Time(Hours),EntityID,ObjectName,ProcessID,StepName,Action
-0.0240545392302047,Botella.280,Conveyor51,14.OnEntered,[Assign] OnEnteringAssignments,Data type mismatch in state variable assignment.
-0.0240545392302047,Botella.280,Conveyor51,14.OnEntered,[Assign] OnEnteringAssignments,State variable 'Botella.280.TipoRevision' is of type 'String' but attempting to assign value '2' that is of type 'Number'.
+0.084017857142857,Orden.263,Model,30.DespachoBotellas,[Decide] Decide1,Possible infinite loop detected in process logic
+0.084017857142857,Orden.263,Model,30.DespachoBotellas,[Decide] Decide1,The process 'DespachoBotellas' has logic that has looped 200000 times without any delay or pause. This may indicate a modeling error. 
 
