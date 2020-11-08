@@ -37,6 +37,7 @@ namespace _MYS1_API_P21
             /*********ENTRADA CLIENTE****/
             createSource(-9,0);
             updateName("Source1", "EntradaCliente");
+            updateProperty("EntradaCliente","InterarrivalTime", "Random.Uniform( 1.2 , 1.8 )");
 
             /***********SALIDA CLIENTE****/
             createSink(-9, 3);
@@ -50,63 +51,75 @@ namespace _MYS1_API_P21
             createServer(8,0);
             updateName("Server1", "Caja");
 
+
             /**********BODEGA*****/
             createSource(12, -6);
             updateName("Source1", "Bodega");
-
+           
 
             /**********ENTREGA*****/
             createCombiner(18, -1);
             updateName("Combiner1", "Entrega");
+            updateProperty("Output@Entrega", "OutboundLinkRule", "ByLinkWeight");
 
             /**********BARRA LATERAL DERECHA*****/
             createServer(37, -7);
             updateName("Server1", "BarraLateralDerecha");
+            updateProperty("BarraLateralDerecha", "InitialCapacity", "8");
 
             /**********BARRA FRONTAL*****/
             createServer(31, 1);
             updateName("Server1", "BarraFrontal");
+            updateProperty("BarraFrontal", "InitialCapacity", "4");
 
 
             /**********CONJUNTO MESAS IZQUERDAAAAA*****/
 
             createServer(-9, 15);
             updateName("Server1", "Mesa1");
+            updateProperty("Mesa1", "InitialCapacity", "3");
 
             createServer(0, 9);
             updateName("Server1", "Mesa2");
+            updateProperty("Mesa2", "InitialCapacity", "3");
 
             createServer(9, 15);
             updateName("Server1", "Mesa3");
+            updateProperty("Mesa3", "InitialCapacity", "3");
 
             createServer(0, 20);
             updateName("Server1", "Mesa4");
+            updateProperty("Mesa4", "InitialCapacity", "3");
 
             createServer(0, 15);
             updateName("Server1", "Mesa9");
+            updateProperty("Mesa9", "InitialCapacity", "5");
 
 
             /*****************CONJUNTO MESAS DERECHA******/
 
             createServer(21, 15);
             updateName("Server1", "Mesa5");
+            updateProperty("Mesa5", "InitialCapacity", "3");
 
             createServer(30, 9);
             updateName("Server1", "Mesa6");
+            updateProperty("Mesa6", "InitialCapacity", "3");
 
             createServer(39, 15);
             updateName("Server1", "Mesa7");
+            updateProperty("Mesa7", "InitialCapacity", "3");
 
             createServer(30, 20);
             updateName("Server1", "Mesa8");
+            updateProperty("Mesa8", "InitialCapacity", "3");
 
             createServer(30, 15);
             updateName("Server1", "Mesa10");
+            updateProperty("Mesa10", "InitialCapacity", "5");
 
             /********************TRANFER DE ENTRADA ***********/
 
-            createTransferNode(17, 6);
-            updateName("TransferNode1", "Entrada");
 
             createTransferNode(11, 10);
             updateName("TransferNode1", "Entrada1_8");
@@ -141,16 +154,45 @@ namespace _MYS1_API_P21
             updateName("Path1", "Bodega_Entrega");
 
             /**ENTREGA A BARRA FRONTAL**/
-            createPath(getNodo("Entrega", 0), getNodo("BarraFrontal", 0));
+            createPath(getNodo("Entrega", 3), getNodo("BarraFrontal", 0));
             updateName("Path1", "Entrega_BarraFrontal");
             updateProperty("Entrega_BarraFrontal", "DrawnToScale", "False");
             updateProperty("Entrega_BarraFrontal", "LogicalLength", "5");
+            updateProperty("Entrega_BarraFrontal", "SelectionWeight", "0.07");
 
             /**ENTREGA A BARRA LATERAL**/
-            createPath(getNodo("Entrega", 0), getNodo("BarraFrontal", 0));
-            updateName("Path1", "Entrega_BarraFrontal");
-            updateProperty("Entrega_BarraFrontal", "DrawnToScale", "False");
-            updateProperty("Entrega_BarraFrontal", "LogicalLength", "5");
+            createPath(getNodo("Entrega", 3), getNodo("BarraFrontal", 0));
+            updateName("Path1", "Entrega_BarraLateral");
+            updateProperty("Entrega_BarraLateral", "DrawnToScale", "False");
+            updateProperty("Entrega_BarraLateral", "LogicalLength", "10");
+            updateProperty("Entrega_BarraLateral", "SelectionWeight", "0.10");
+
+            /**ENTREGA A MESA DE 1 A 8***/
+
+            createTimePath(getNodo("Entrega", 3), getNodobasico("Entrada1_8"));
+            updateName("TimePath1", "Entrega_Mesa1_8");
+            updateProperty("Entrega_Mesa1_8", "TravelTime", "0.1166"); //7 segundos
+            updateProperty("Entrega_Mesa1_8", "SelectionWeight", "0.25");
+
+            //**ENTREGA A MESA 9 Y 10**/
+
+            createTimePath(getNodo("Entrega", 3), getNodobasico("Entrada1_8"));
+            updateName("TimePath1", "Entrada9_10");
+            updateProperty("Entrada9_10", "TravelTime", "0.166"); //10 segundos
+            updateProperty("Entrada9_10", "SelectionWeight", "0.08");
+
+
+            /***ENTREGA A SALIDA DE LA TIENDA ***/
+            createTimePath(getNodo("Entrega", 3), getNodo("SalidaCliente", 0));
+            updateName("TimePath1", "Entrega_Salida");
+            updateProperty("Entrega_Salida", "TravelTime", "0.25"); //15 segundos
+            updateProperty("Entrega_Salida", "SelectionWeight", "0.50");
+
+            /***CUALQUIER MESA A SALIDA ***/
+            createTimePath(getNodo("Salida", 3), getNodo("SalidaCliente", 0));
+            updateName("TimePath1", "Salida_SalidaCliente");
+            updateProperty("Salida_SalidaCliente", "TravelTime", "0.4166"); //25 segundos
+
 
 
 
