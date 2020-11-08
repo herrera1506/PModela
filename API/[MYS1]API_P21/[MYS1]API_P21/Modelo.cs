@@ -32,45 +32,51 @@ namespace _MYS1_API_P21
             CreateMap();
             SimioProjectFactory.SaveProject(proyectoApi, rutafinal, out warnings);
         }
-        public void CreateMap() {
+        public void CreateMap()
+        {
 
             /*********ENTRADA CLIENTE****/
-            createSource(-9,0);
+            createSource(-9, 0);
             updateName("Source1", "EntradaCliente");
-            updateProperty("EntradaCliente","InterarrivalTime", "Random.Uniform( 1.2 , 1.8 )");
+            updateProperty("EntradaCliente", "InterarrivalTime", "Random.Uniform( 1.2 , 1.8 )");
 
             /***********SALIDA CLIENTE****/
             createSink(-9, 3);
             updateName("Sink1", "SalidaCliente");
 
             /**********BARRA LATERAL IZQUIERDA*****/
-            createServer(2,-7);
+            createServer(2, -7);
             updateName("Server1", "BarraLateralIzquierda");
 
             /**********CAJA ******/
-            createServer(8,0);
+            createServer(8, 0);
             updateName("Server1", "Caja");
+            updateProperty("Caja", "ProcessingTime", "Random.Uniform( 0.58 , 1.75)");
 
 
             /**********BODEGA*****/
             createSource(12, -6);
             updateName("Source1", "Bodega");
-           
+            updateProperty("Bodega", "InterarrivalTime", "Random.Uniform( 0.01 , 0.014)");
+
 
             /**********ENTREGA*****/
             createCombiner(18, -1);
             updateName("Combiner1", "Entrega");
             updateProperty("Output@Entrega", "OutboundLinkRule", "ByLinkWeight");
+            updateProperty("Entrega", "BatchQuantity", "3");
 
             /**********BARRA LATERAL DERECHA*****/
             createServer(37, -7);
             updateName("Server1", "BarraLateralDerecha");
             updateProperty("BarraLateralDerecha", "InitialCapacity", "8");
+            updateProperty("BarraLateralDerecha", "ProcessingTime", "Random.Triangular(3,5,8)");
 
             /**********BARRA FRONTAL*****/
             createServer(31, 1);
             updateName("Server1", "BarraFrontal");
             updateProperty("BarraFrontal", "InitialCapacity", "4");
+            updateProperty("BarraFrontal", "ProcessingTime", "Random.Triangular(3,5,8)");
 
 
             /**********CONJUNTO MESAS IZQUERDAAAAA*****/
@@ -78,22 +84,27 @@ namespace _MYS1_API_P21
             createServer(-9, 15);
             updateName("Server1", "Mesa1");
             updateProperty("Mesa1", "InitialCapacity", "3");
+            updateProperty("Mesa1", "ProcessingTime", "Random.Triangular(8,16,24)");
 
             createServer(0, 9);
             updateName("Server1", "Mesa2");
             updateProperty("Mesa2", "InitialCapacity", "3");
+            updateProperty("Mesa2", "ProcessingTime", "Random.Triangular(8,16,24)");
 
             createServer(9, 15);
             updateName("Server1", "Mesa3");
             updateProperty("Mesa3", "InitialCapacity", "3");
+            updateProperty("Mesa3", "ProcessingTime", "Random.Triangular(8,16,24)");
 
             createServer(0, 20);
             updateName("Server1", "Mesa4");
             updateProperty("Mesa4", "InitialCapacity", "3");
+            updateProperty("Mesa4", "ProcessingTime", "Random.Triangular(8,16,24)");
 
             createServer(0, 15);
             updateName("Server1", "Mesa9");
             updateProperty("Mesa9", "InitialCapacity", "5");
+            updateProperty("Mesa9", "ProcessingTime", "Random.Triangular(8,16,24)");
 
 
             /*****************CONJUNTO MESAS DERECHA******/
@@ -101,36 +112,44 @@ namespace _MYS1_API_P21
             createServer(21, 15);
             updateName("Server1", "Mesa5");
             updateProperty("Mesa5", "InitialCapacity", "3");
+            updateProperty("Mesa5", "ProcessingTime", "Random.Triangular(8,16,24)");
 
             createServer(30, 9);
             updateName("Server1", "Mesa6");
             updateProperty("Mesa6", "InitialCapacity", "3");
+            updateProperty("Mesa6", "ProcessingTime", "Random.Triangular(8,16,24)");
 
             createServer(39, 15);
             updateName("Server1", "Mesa7");
             updateProperty("Mesa7", "InitialCapacity", "3");
+            updateProperty("Mesa7", "ProcessingTime", "Random.Triangular(8,16,24)");
 
             createServer(30, 20);
             updateName("Server1", "Mesa8");
             updateProperty("Mesa8", "InitialCapacity", "3");
+            updateProperty("Mesa8", "ProcessingTime", "Random.Triangular(8,16,24)");
 
             createServer(30, 15);
             updateName("Server1", "Mesa10");
             updateProperty("Mesa10", "InitialCapacity", "5");
+            updateProperty("Mesa10", "ProcessingTime", "Random.Triangular(8,16,24)");
 
             /********************TRANFER DE ENTRADA ***********/
 
 
-            createTransferNode(11, 10);
+            createTransferNode(10, 8);
             updateName("TransferNode1", "Entrada1_8");
 
-            createTransferNode(21, 10);
+            createTransferNode(21, 8);
             updateName("TransferNode1", "Entrada9_10");
 
 
+            createTransferNode(19, 3);
+            updateName("TransferNode1", "SalidaSalida");
+
             /********************TRANFER DE SALIDA ***********/
 
-            createTransferNode(17, 10);
+            createTransferNode(16, 20);
             updateName("TransferNode1", "Salida");
 
 
@@ -153,15 +172,15 @@ namespace _MYS1_API_P21
             createPath(getNodo("Bodega", 0), getNodo("Entrega", 0));
             updateName("Path1", "Bodega_Entrega");
 
-            /**ENTREGA A BARRA FRONTAL**/
-            createPath(getNodo("Entrega", 3), getNodo("BarraFrontal", 0));
+            /**ENTREGA A BARRA FRONTAL * */
+            createPath(getNodo("Entrega", 2), getNodo("BarraFrontal", 0));
             updateName("Path1", "Entrega_BarraFrontal");
             updateProperty("Entrega_BarraFrontal", "DrawnToScale", "False");
             updateProperty("Entrega_BarraFrontal", "LogicalLength", "5");
             updateProperty("Entrega_BarraFrontal", "SelectionWeight", "0.07");
 
             /**ENTREGA A BARRA LATERAL**/
-            createPath(getNodo("Entrega", 3), getNodo("BarraFrontal", 0));
+            createPath(getNodo("Entrega", 2), getNodo("BarraLateralDerecha", 0));
             updateName("Path1", "Entrega_BarraLateral");
             updateProperty("Entrega_BarraLateral", "DrawnToScale", "False");
             updateProperty("Entrega_BarraLateral", "LogicalLength", "10");
@@ -169,40 +188,121 @@ namespace _MYS1_API_P21
 
             /**ENTREGA A MESA DE 1 A 8***/
 
-            createTimePath(getNodo("Entrega", 3), getNodobasico("Entrada1_8"));
+            createTimePath(getNodo("Entrega", 2), getNodobasico("Entrada1_8"));
             updateName("TimePath1", "Entrega_Mesa1_8");
             updateProperty("Entrega_Mesa1_8", "TravelTime", "0.1166"); //7 segundos
             updateProperty("Entrega_Mesa1_8", "SelectionWeight", "0.25");
 
             //**ENTREGA A MESA 9 Y 10**/
 
-            createTimePath(getNodo("Entrega", 3), getNodobasico("Entrada1_8"));
-            updateName("TimePath1", "Entrada9_10");
-            updateProperty("Entrada9_10", "TravelTime", "0.166"); //10 segundos
-            updateProperty("Entrada9_10", "SelectionWeight", "0.08");
+            createTimePath(getNodo("Entrega", 2), getNodobasico("Entrada9_10"));
+            updateName("TimePath1", "Entrega_Entrada9_10");
+            updateProperty("Entrega_Entrada9_10", "TravelTime", "0.166"); //10 segundos
+            updateProperty("Entrega_Entrada9_10", "SelectionWeight", "0.08");
 
 
             /***ENTREGA A SALIDA DE LA TIENDA ***/
-            createTimePath(getNodo("Entrega", 3), getNodo("SalidaCliente", 0));
+            createTimePath(getNodo("Entrega", 2), getNodobasico("SalidaSalida"));
             updateName("TimePath1", "Entrega_Salida");
             updateProperty("Entrega_Salida", "TravelTime", "0.25"); //15 segundos
             updateProperty("Entrega_Salida", "SelectionWeight", "0.50");
 
+            createTimePath(getNodobasico("SalidaSalida"), getNodo("SalidaCliente", 0));
+            updateName("TimePath1", "Entrega_SalidaSalida");
+
             /***CUALQUIER MESA A SALIDA ***/
-            createTimePath(getNodo("Salida", 3), getNodo("SalidaCliente", 0));
+            createTimePath(getNodobasico("Salida"), getNodobasico("SalidaSalida"));
             updateName("TimePath1", "Salida_SalidaCliente");
             updateProperty("Salida_SalidaCliente", "TravelTime", "0.4166"); //25 segundos
 
 
+            /**********ENTRE MESAS*******/
+            /***ENTRADA***/
+            createPath(getNodobasico("Entrada1_8"), getNodo("Mesa1", 0));
+            updateName("Path1", "Entrada1_8_Mesa1");
+            updateProperty("Entrada1_8_Mesa1", "SelectionWeight", "0.125");
+            
 
+            createPath(getNodobasico("Entrada1_8"), getNodo("Mesa2", 0));
+            updateName("Path1", "Entrada1_8_Mesa2");
+            updateProperty("Entrada1_8_Mesa2", "SelectionWeight", "0.125");
+
+            createPath(getNodobasico("Entrada1_8"), getNodo("Mesa3", 0));
+            updateName("Path1", "Entrada1_8_Mesa3");
+            updateProperty("Entrada1_8_Mesa3", "SelectionWeight", "0.125");
+
+            createPath(getNodobasico("Entrada1_8"), getNodo("Mesa4", 0));
+            updateName("Path1", "Entrada1_8_Mesa4");
+            updateProperty("Entrada1_8_Mesa4", "SelectionWeight", "0.125");
+
+            createPath(getNodobasico("Entrada1_8"), getNodo("Mesa5", 0));
+            updateName("Path1", "Entrada1_8_Mesa5");
+            updateProperty("Entrada1_8_Mesa5", "SelectionWeight", "0.125");
+
+            createPath(getNodobasico("Entrada1_8"), getNodo("Mesa6", 0));
+            updateName("Path1", "Entrada1_8_Mesa6");
+            updateProperty("Entrada1_8_Mesa6", "SelectionWeight", "0.125");
+
+            createPath(getNodobasico("Entrada1_8"), getNodo("Mesa7", 0));
+            updateName("Path1", "Entrada1_8_Mesa7");
+            updateProperty("Entrada1_8_Mesa7", "SelectionWeight", "0.125");
+
+            createPath(getNodobasico("Entrada1_8"), getNodo("Mesa8", 0));
+            updateName("Path1", "Entrada1_8_Mesa8");
+            updateProperty("Entrada1_8_Mesa8", "SelectionWeight", "0.125");
+
+            /****SALIDA*****/
+            createPath(getNodo("Mesa1", 1), getNodobasico("Salida"));
+            updateName("Path1", "Mesa1_Salida");
+
+
+            createPath(getNodo("Mesa2", 1), getNodobasico("Salida"));
+            updateName("Path1", "Mesa1_Salida");
+
+            createPath(getNodo("Mesa3", 1), getNodobasico("Salida"));
+            updateName("Path1", "Mesa3_Salida");
+
+            createPath(getNodo("Mesa4", 1), getNodobasico("Salida"));
+            updateName("Path1", "Mesa4_Salida");
+
+            createPath(getNodo("Mesa5", 1), getNodobasico("Salida"));
+            updateName("Path1", "Mesa5_Salida");
+
+            createPath(getNodo("Mesa6", 1), getNodobasico("Salida"));
+            updateName("Path1", "Mesa6_Salida");
+
+            createPath(getNodo("Mesa7", 1), getNodobasico("Salida"));
+            updateName("Path1", "Mesa7_Salida");
+
+            createPath(getNodo("Mesa8", 1), getNodobasico("Salida"));
+            updateName("Path1", "Mesa8_Salida");
+
+         
+
+
+            /***ENTRADA****/
+            createPath(getNodobasico("Entrada9_10"), getNodo("Mesa9", 0));
+            updateName("Path1", "Entrada9_10_Mesa9");
+            updateProperty("Entrada9_10_Mesa9", "SelectionWeight", "0.5");
+
+
+            createPath(getNodobasico("Entrada9_10"), getNodo("Mesa10", 0));
+            updateName("Path1", "Entrada9_10_Mesa10");
+            updateProperty("Entrada9_10_Mesa10", "SelectionWeight", "0.5");
+
+            /***SALIDAAAA***/
+
+            createPath(getNodo("Mesa9", 1), getNodobasico("Salida"));
+            updateName("Path1", "Mesa9_Salida");
+
+            createPath(getNodo("Mesa10", 1), getNodobasico("Salida"));
+            updateName("Path1", "Mesa10_Salida");
 
         }
 
-   
+            //-------------------Objetos-------------------//
 
-        //-------------------Objetos-------------------//
-
-        public void createSource(int x, int y)
+            public void createSource(int x, int y)
         {
             this.createObject("Source", x, y);
 
