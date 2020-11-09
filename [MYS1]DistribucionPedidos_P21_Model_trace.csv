@@ -1,4 +1,4 @@
 Time(Hours),EntityID,ObjectName,ProcessID,StepName,Action
-0.084017857142857,Orden.263,Model,30.DespachoBotellas,[Decide] Decide1,Possible infinite loop detected in process logic
-0.084017857142857,Orden.263,Model,30.DespachoBotellas,[Decide] Decide1,The process 'DespachoBotellas' has logic that has looped 200000 times without any delay or pause. This may indicate a modeling error. 
+0.392296343105977,Camion.272,CargaCamion,26.OnEnteredOutputBuffer,[Assign] BeforeExitingAssignments,Unable to get value of property 'CargaCamion.AssignmentsBeforeExiting.AssignmentsBeforeExitingNewValue'.
+0.392296343105977,Camion.272,CargaCamion,26.OnEnteredOutputBuffer,[Assign] BeforeExitingAssignments,Referenced definition type 'CajaEntity' does not match executing type 'VehiculoEntity'
 
